@@ -1,0 +1,17 @@
+@import "tailwindcss";
+@import "./tw-inline.css";
+@source "../components";
+@source "./";
+
+@theme {
+  --color-night: #14213d;
+  --color-sand: #f6f4ef;
+  --color-sand-line: #e6e1d6;
+  --color-paypal: #0070ba;
+  --font-serif: var(--font-source-serif), var(--font-frank), Georgia, serif;
+  --font-sans: var(--font-source-sans), var(--font-assistant), Arial, sans-serif;
+}
+
+html { scroll-behavior: smooth; }
+body { color: #222; background: #fff; }
+.title-size { font-size: clamp(1.9rem, 4.5vw, 2.6rem); }
