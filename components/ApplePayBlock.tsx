@@ -1,16 +1,12 @@
 import { REVOLUT_URL } from "@/lib/i18n";
 
-// iPhone : Apple Pay seul. Android : Google Pay seul. Ordinateur : les deux.
-// Le petit script marque <html data-os="…"> pendant le chargement, avant l'affichage des boutons (pas de clignotement).
-const DETECT = `(function(u,d){if(/Android/i.test(u))d.dataset.os="android";else if(/iPhone|iPad|iPod/.test(u)||(/Macintosh/.test(u)&&navigator.maxTouchPoints>1))d.dataset.os="ios"})(navigator.userAgent,document.documentElement)`;
-
+// Apple Pay, Google Pay et carte mènent tous à la même page Revolut ; les deux logos sont affichés partout.
 const linkProps = { href: REVOLUT_URL, target: "_blank", rel: "noopener noreferrer" } as const;
 const payBtn = "flex h-12 items-center justify-center gap-[5px] rounded-[6px] bg-black text-white hover:bg-[#222]";
 
 export function ApplePayBlock({ t }: { t: { title: string; card: string; note: string; help: string } }) {
   return (
     <div className="mb-4 rounded-[6px] border border-neutral-300 bg-white p-6">
-      <script dangerouslySetInnerHTML={{ __html: DETECT }} />
       <h3 className="mb-1.5 text-[1.15rem] font-bold text-night">{t.title}</h3>
       <p className="text-[16px] text-neutral-600">{t.note}</p>
       <div className="mt-3.5 flex max-w-[340px] flex-col gap-2.5">
