@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
-// Export statique : /fr, /en, /he en HTML pur. La racine "/" redirige vers /fr (vercel.json).
+// Pages /fr, /en, /he pré-rendues ; la route /api/create-payment-intent tourne en fonction serveur (Stripe).
+// La racine "/" redirige vers /he (vercel.json).
 const nextConfig: NextConfig = {
-  output: "export",
   images: { unoptimized: true },
 };
 
