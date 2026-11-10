@@ -29,6 +29,8 @@ type Dict = {
   by: string;
   goal: string;
   letter: { p: string[]; list: string[]; listIntro: string; after: string[]; sign: [string, string] };
+  seePhotos: string;
+  lastYear: { title: string; stats: { n: string; label: string }[]; hebron: string; thisYear: string };
   galleryTitle: string;
   photoAlt: (n: number) => string;
   videoLabel: (n: number) => string;
@@ -81,7 +83,19 @@ export const dict: Record<Locale, Dict> = {
         "Cette année, le but est simple : passer Hanoukka avec les soldats au front, et en particulier ceux de la brigade Hashmonaïm. Ramener la lumière jusqu'au dernier check-point. Tout ce qu'on récolte sert à acheter ce qu'on leur apporte. Les photos ci-dessous viennent de nos sorties.",
         "On vise 5 000 $. Chaque don, même petit, c'est une boîte de beignets ou une bougie de plus.",
       ],
-      sign: ["Merci et 'Hag Ourim Saméa'h,", "Shneor"],
+      sign: ["Merci beaucoup et joyeuses fêtes de Hanoukka,", "Shneor"],
+    },
+    seePhotos: "Voir les photos",
+    lastYear: {
+      title: "L'année dernière",
+      stats: [
+        { n: "400+", label: "bases et check-points visités" },
+        { n: "2 000+", label: "bougies distribuées et allumées" },
+        { n: "5 000+", label: "beignets distribués" },
+        { n: "5 000+", label: "canettes distribuées" },
+      ],
+      hebron: "Et un grand allumage public avec barbecue pour les soldats, au tombeau des Patriarches à Hébron.",
+      thisYear: "Cette année, on veut en faire autant. Ça dépend de votre générosité.",
     },
     galleryTitle: "Nos sorties en photos",
     photoAlt: (n) => `Sortie de Hanoukka avec les soldats, photo ${n}`,
@@ -134,7 +148,19 @@ export const dict: Record<Locale, Dict> = {
         "This year the goal is simple: spend Hanukkah with the soldiers on the front lines, especially the Hashmonaim Brigade. Bring the light all the way to the last checkpoint. Everything we raise goes toward what we bring them. The photos below are from our past visits.",
         "We're aiming for $5,000. Every donation, even a small one, means one more box of doughnuts or one more candle.",
       ],
-      sign: ["Thank you and Happy Hanukkah,", "Shneor"],
+      sign: ["Thank you so much and happy Hanukkah,", "Shneor"],
+    },
+    seePhotos: "See the photos",
+    lastYear: {
+      title: "Last year",
+      stats: [
+        { n: "400+", label: "bases and checkpoints visited" },
+        { n: "2,000+", label: "candles handed out and lit" },
+        { n: "5,000+", label: "sufganiyot handed out" },
+        { n: "5,000+", label: "cans of drinks handed out" },
+      ],
+      hebron: "And a big public candle lighting with a barbecue for the soldiers, at the Cave of the Patriarchs in Hebron.",
+      thisYear: "This year we want to do just as much. It depends on your generosity.",
     },
     galleryTitle: "Our visits in photos",
     photoAlt: (n) => `Hanukkah visit with the soldiers, photo ${n}`,
@@ -187,7 +213,19 @@ export const dict: Record<Locale, Dict> = {
         "השנה המטרה פשוטה: לעשות חנוכה עם הלוחמים בחזית, ובמיוחד עם לוחמי חטיבת החשמונאים. להביא את האור עד המחסום האחרון. כל מה שנאסף הולך לקנות את מה שאנחנו מביאים להם. התמונות למטה הן מהיציאות שלנו.",
         "היעד שלנו: 5,000 דולר. כל תרומה, גם קטנה, היא עוד קופסת סופגניות או עוד נר.",
       ],
-      sign: ["תודה וחג אורים שמח,", "שניאור"],
+      sign: ["תודה רבה וחג חנוכה שמח,", "שניאור"],
+    },
+    seePhotos: "לתמונות",
+    lastYear: {
+      title: "בשנה שעברה",
+      stats: [
+        { n: "+400", label: "בסיסים ומחסומים שביקרנו בהם" },
+        { n: "+2,000", label: "נרות שחולקו והודלקו" },
+        { n: "+5,000", label: "סופגניות שחולקו" },
+        { n: "+5,000", label: "פחיות שתייה שחולקו" },
+      ],
+      hebron: "והדלקה גדולה ופתוחה לציבור עם מנגל לחיילים, במערת המכפלה בחברון.",
+      thisYear: "השנה אנחנו רוצים לעשות לפחות אותו דבר. זה תלוי בנדיבות שלכם.",
     },
     galleryTitle: "היציאות שלנו בתמונות",
     photoAlt: (n) => `יציאת חנוכה עם החיילים, תמונה ${n}`,
