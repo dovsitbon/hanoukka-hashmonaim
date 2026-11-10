@@ -159,25 +159,6 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
 
         <Gallery photos={photos} labels={{ close: t.close, prev: t.prev, next: t.next }} />
 
-        <div className="mx-auto mt-1.5 grid max-w-[1000px] gap-1.5 px-5 sm:grid-cols-[2fr_1fr]">
-          <video
-            src="/videos/v1.mp4"
-            controls
-            playsInline
-            preload="metadata"
-            aria-label={t.videoLabel(1)}
-            className="aspect-[848/464] w-full rounded-[3px] bg-black sm:aspect-auto sm:h-full sm:max-h-[420px] sm:object-cover"
-          />
-          <video
-            src="/videos/v2.mp4"
-            controls
-            playsInline
-            preload="metadata"
-            aria-label={t.videoLabel(2)}
-            className="mx-auto aspect-[464/848] w-full max-w-[360px] rounded-[3px] bg-black sm:h-full sm:max-h-[420px] sm:max-w-none sm:object-cover"
-          />
-        </div>
-
         <section id="don" className="mt-14 scroll-mt-4 border-t border-sand-line bg-sand pb-12 pt-5">
           <div className="mx-auto max-w-[760px] px-5">
             <h2 className="mb-4 mt-8 font-serif text-[1.6rem] font-bold leading-[1.2] text-night">{t.donateTitle}</h2>
