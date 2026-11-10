@@ -6,7 +6,7 @@ const LANG_NAMES: Record<Locale, string> = { fr: "FR", en: "EN", he: "עב" };
 
 export default async function Page({ params }: PageProps<"/[lang]">) {
   const { lang: l } = await params;
-  const lang: Locale = isLocale(l) ? l : "fr";
+  const lang: Locale = isLocale(l) ? l : "he";
   const t = dict[lang];
   const photos = PHOTOS.map((n, i) => ({ src: `/photos/p${n}.jpg`, alt: t.photoAlt(i + 1) }));
 

@@ -24,7 +24,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
     metadataBase: new URL(SITE_URL),
     title: t.htmlTitle,
     description: t.description,
-    alternates: { canonical: `/${lang}`, languages: { fr: "/fr", en: "/en", he: "/he", "x-default": "/fr" } },
+    alternates: { canonical: `/${lang}`, languages: { fr: "/fr", en: "/en", he: "/he", "x-default": "/he" } },
     openGraph: {
       type: "website",
       url: `/${lang}`,
