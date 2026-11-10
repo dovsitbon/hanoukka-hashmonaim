@@ -1,4 +1,4 @@
-import { BANK, PAYPAL_URL, PHOTOS, dict, isLocale, locales, type Locale } from "@/lib/i18n";
+import { BANK, BIT_URL, PAYPAL_URL, PHOTOS, dict, isLocale, locales, type Locale } from "@/lib/i18n";
 import { Gallery } from "@/components/Gallery";
 import { CopyButton } from "@/components/CopyButton";
 import { Hanukkiah } from "@/components/Hanukkiah";
@@ -26,6 +26,35 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
     { label: t.rows.iban, shown: BANK.iban, copy: BANK.iban.replace(/\s/g, "") },
     { label: t.rows.bic, shown: BANK.bic, copy: BANK.bic },
   ];
+
+  const bitBlock = (
+    <div className="mb-4 flex flex-col items-stretch gap-6 rounded-[6px] border border-neutral-300 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
+      <div>
+        <h3 className="mb-1.5 text-[1.15rem] font-bold text-night">Bit</h3>
+        <p className="text-[16px] text-neutral-600">{t.bit.note}</p>
+        <p className="mt-1 text-[15px] text-neutral-500">
+          {t.bit.to} <bdi className="font-semibold text-neutral-800">שניאור זלמן סיטבון</bdi>
+          {lang !== "he" && <> (Shneor Zalman Sitbon)</>}
+        </p>
+        <a
+          href={BIT_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mt-3.5 block rounded-[4px] bg-[#00c4cc] px-[22px] py-3 text-center font-bold text-white hover:bg-[#00b0b8] sm:inline-block"
+        >
+          {t.bit.btn}
+        </a>
+      </div>
+      <img
+        src="/photos/bit-qr.jpg"
+        alt={t.bit.qrAlt}
+        width={130}
+        height={130}
+        loading="lazy"
+        className="hidden w-[130px] shrink-0 sm:block"
+      />
+    </div>
+  );
 
   return (
     <>
@@ -163,6 +192,8 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
           <div className="mx-auto max-w-[760px] px-5">
             <h2 className="mb-4 mt-8 font-serif text-[1.6rem] font-bold leading-[1.2] text-night">{t.donateTitle}</h2>
 
+            {lang === "he" && bitBlock}
+
             <StripeDonate t={t.stripe} lang={lang} />
 
             <div className="mb-4 flex flex-col items-stretch gap-6 rounded-[6px] border border-neutral-300 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
@@ -187,6 +218,8 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
                 className="hidden w-[130px] shrink-0 sm:block"
               />
             </div>
+
+            {lang !== "he" && bitBlock}
 
             <div className="mb-4 rounded-[6px] border border-neutral-300 bg-white p-6">
               <h3 className="mb-1.5 text-[1.15rem] font-bold text-night">{t.transferTitle}</h3>

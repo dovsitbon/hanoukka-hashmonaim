@@ -8,6 +8,7 @@ export type StripeTexts = {
   processing: string; minError: string; emailError: string; error: string; secure: string; thanks: string;
 };
 
+export const BIT_URL = "https://www.bitpay.co.il/app/me/32219B0E-AD5E-6854-E161-3DFC2133863E76A6";
 export const PAYPAL_URL = "https://www.paypal.me/ShneorSitbon37";
 
 // Ordre de la galerie : ordre de la maquette, puis les 10 photos envoyées ensuite (p16 à p25).
@@ -41,6 +42,7 @@ type Dict = {
   videoLabel: (n: number) => string;
   donateTitle: string;
   stripe: StripeTexts;
+  bit: { btn: string; note: string; to: string; qrAlt: string };
   paypalTitle: string;
   paypalNote: string;
   paypalBtn: string;
@@ -108,6 +110,7 @@ export const dict: Record<Locale, Dict> = {
     videoLabel: (n) => `Vidéo ${n} d'une sortie de Hanoukka`,
     donateTitle: "Faire un don",
     stripe: {"title":"Apple Pay, Google Pay ou carte bancaire","choose":"Choisissez votre don","other":"Autre montant","min":"Minimum 5 €","or":"ou par carte bancaire","email":"Votre email (pour le reçu)","pay":"Donner {amount}","processing":"Paiement en cours…","minError":"Le montant minimum est de 5 €.","emailError":"Indiquez un email valide pour recevoir le reçu.","error":"Le paiement n'a pas abouti. Réessayez, ou passez par PayPal ou le virement ci-dessous.","secure":"Paiement sécurisé par Stripe. Pas besoin de compte.","thanks":"Merci pour votre don ! Un reçu vous a été envoyé par email."},
+    bit: {"btn":"Payer avec Bit","note":"Pour les donateurs en Israël, avec l'application Bit.","to":"Bénéficiaire :","qrAlt":"QR code Bit pour Shneor Zalman Sitbon"},
     paypalTitle: "Par carte bancaire ou PayPal",
     paypalNote: "Pas besoin de compte PayPal, vous pouvez payer directement par carte.",
     paypalBtn: "Donner avec PayPal",
@@ -174,6 +177,7 @@ export const dict: Record<Locale, Dict> = {
     videoLabel: (n) => `Video ${n} from a Hanukkah visit`,
     donateTitle: "Donate",
     stripe: {"title":"Apple Pay, Google Pay or card","choose":"Choose your donation","other":"Other amount","min":"Minimum €5","or":"or by card","email":"Your email (for the receipt)","pay":"Donate {amount}","processing":"Processing…","minError":"The minimum amount is €5.","emailError":"Enter a valid email to receive your receipt.","error":"The payment didn't go through. Try again, or use PayPal or the bank transfer below.","secure":"Secure payment by Stripe. No account needed.","thanks":"Thank you for your donation! A receipt has been sent to your email."},
+    bit: {"btn":"Pay with Bit","note":"For donors in Israel, with the Bit app.","to":"Recipient:","qrAlt":"Bit QR code for Shneor Zalman Sitbon"},
     paypalTitle: "By card or PayPal",
     paypalNote: "No PayPal account needed, you can pay by card.",
     paypalBtn: "Donate with PayPal",
@@ -240,6 +244,7 @@ export const dict: Record<Locale, Dict> = {
     videoLabel: (n) => `סרטון ${n} מיציאת חנוכה`,
     donateTitle: "לתרומה",
     stripe: {"title":"Apple Pay, Google Pay או כרטיס אשראי","choose":"בחרו את סכום התרומה","other":"סכום אחר","min":"מינימום 5 €","or":"או בכרטיס אשראי","email":"האימייל שלכם (לקבלה)","pay":"לתרום {amount}","processing":"התשלום מתבצע…","minError":"הסכום המינימלי הוא 5 €.","emailError":"רשמו אימייל תקין כדי לקבל קבלה.","error":"התשלום לא עבר. נסו שוב, או השתמשו ב-PayPal או בהעברה בנקאית למטה.","secure":"תשלום מאובטח דרך Stripe. לא צריך חשבון.","thanks":"תודה על התרומה! קבלה נשלחה אליך במייל."},
+    bit: {"btn":"תשלום בביט","note":"לתורמים בישראל, דרך אפליקציית ביט. מהיר ופשוט.","to":"המוטב:","qrAlt":"קוד QR של ביט לשניאור זלמן סיטבון"},
     paypalTitle: "בכרטיס אשראי או PayPal",
     paypalNote: "אין צורך בחשבון PayPal, אפשר לשלם בכרטיס אשראי.",
     paypalBtn: "לתרום ב-PayPal",
