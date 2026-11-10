@@ -58,7 +58,7 @@ export const dict: Record<Locale, Dict> = {
   fr: {
     htmlTitle: "Hanoukka avec la brigade Hashmonaïm – Collecte de Shneor Sitbon",
     description:
-      "Beignets, repas chauds et bougies de Hanoukka pour les soldats au front et la brigade Hashmonaïm. Collecte de Shneor Sitbon, objectif 5 000 $.",
+      "Beignets, repas chauds et bougies de Hanoukka pour les soldats au front et la brigade Hashmonaïm. Collecte de Shneor Sitbon, objectif 7 700 $.",
     ogTitle: "Hanoukka avec les soldats de la brigade Hashmonaïm",
     ogDescription: "Ramener la lumière jusqu'au dernier check-point. Collecte de Shneor Sitbon.",
     brand: "Hanoukka · Brigade Hashmonaïm",
@@ -66,7 +66,7 @@ export const dict: Record<Locale, Dict> = {
     coverAlt: "Coffre de voiture rempli de soufganiot, de boissons et de coffrets de bougies, prêt pour une sortie",
     title: "Hanoukka avec les soldats de la brigade Hashmonaïm",
     by: "Collecte organisée par Shneor Sitbon",
-    goal: "Objectif : 5 000 $",
+    goal: "Objectif : 7 700 $",
     letter: {
       p: [
         "Shalom à tous,",
@@ -81,7 +81,7 @@ export const dict: Record<Locale, Dict> = {
       ],
       after: [
         "Cette année, le but est simple : passer Hanoukka avec les soldats au front, et en particulier ceux de la brigade Hashmonaïm. Ramener la lumière jusqu'au dernier check-point. Tout ce qu'on récolte sert à acheter ce qu'on leur apporte. Les photos ci-dessous viennent de nos sorties.",
-        "On vise 5 000 $. Chaque don, même petit, c'est une boîte de beignets ou une bougie de plus.",
+        "On vise 7 700 $. Chaque don, même petit, c'est une boîte de beignets ou une bougie de plus.",
       ],
       sign: ["Merci beaucoup et joyeuses fêtes de Hanoukka,", "Shneor"],
     },
@@ -123,7 +123,7 @@ export const dict: Record<Locale, Dict> = {
   en: {
     htmlTitle: "Hanukkah with the Hashmonaim Brigade – Shneor Sitbon's fundraiser",
     description:
-      "Sufganiyot, hot meals and Hanukkah candles for soldiers on the front lines and the Hashmonaim Brigade. A fundraiser by Shneor Sitbon, goal $5,000.",
+      "Sufganiyot, hot meals and Hanukkah candles for soldiers on the front lines and the Hashmonaim Brigade. A fundraiser by Shneor Sitbon, goal $7,700.",
     ogTitle: "Hanukkah with the soldiers of the Hashmonaim Brigade",
     ogDescription: "Bringing the light all the way to the last checkpoint. A fundraiser by Shneor Sitbon.",
     brand: "Hanukkah · Hashmonaim Brigade",
@@ -131,7 +131,7 @@ export const dict: Record<Locale, Dict> = {
     coverAlt: "A car trunk packed with sufganiyot, drinks and candle kits, ready for a visit",
     title: "Hanukkah with the soldiers of the Hashmonaim Brigade",
     by: "A fundraiser organized by Shneor Sitbon",
-    goal: "Goal: $5,000",
+    goal: "Goal: $7,700",
     letter: {
       p: [
         "Shalom everyone,",
@@ -146,7 +146,7 @@ export const dict: Record<Locale, Dict> = {
       ],
       after: [
         "This year the goal is simple: spend Hanukkah with the soldiers on the front lines, especially the Hashmonaim Brigade. Bring the light all the way to the last checkpoint. Everything we raise goes toward what we bring them. The photos below are from our past visits.",
-        "We're aiming for $5,000. Every donation, even a small one, means one more box of doughnuts or one more candle.",
+        "We're aiming for $7,700. Every donation, even a small one, means one more box of doughnuts or one more candle.",
       ],
       sign: ["Thank you so much and happy Hanukkah,", "Shneor"],
     },
@@ -188,7 +188,7 @@ export const dict: Record<Locale, Dict> = {
   he: {
     htmlTitle: "חנוכה עם חטיבת החשמונאים – מגבית של שניאור סיטבון",
     description:
-      "סופגניות, ארוחות חמות ונרות חנוכה ללוחמים בחזית ולחטיבת החשמונאים. מגבית של שניאור סיטבון, יעד 5,000 דולר.",
+      "סופגניות, ארוחות חמות ונרות חנוכה ללוחמים בחזית ולחטיבת החשמונאים. מגבית של שניאור סיטבון, יעד 7,700 דולר.",
     ogTitle: "חנוכה עם הלוחמים של חטיבת החשמונאים",
     ogDescription: "להביא את האור עד המחסום האחרון. מגבית של שניאור סיטבון.",
     brand: "חנוכה · חטיבת החשמונאים",
@@ -196,7 +196,7 @@ export const dict: Record<Locale, Dict> = {
     coverAlt: "תא מטען מלא בסופגניות, שתייה וערכות נרות, מוכן ליציאה",
     title: "חנוכה עם הלוחמים של חטיבת החשמונאים",
     by: "מגבית בארגון שניאור סיטבון",
-    goal: "היעד: 5,000 דולר",
+    goal: "היעד: 7,700 דולר",
     letter: {
       p: [
         "שלום לכולם,",
@@ -211,7 +211,7 @@ export const dict: Record<Locale, Dict> = {
       ],
       after: [
         "השנה המטרה פשוטה: לעשות חנוכה עם הלוחמים בחזית, ובמיוחד עם לוחמי חטיבת החשמונאים. להביא את האור עד המחסום האחרון. כל מה שנאסף הולך לקנות את מה שאנחנו מביאים להם. התמונות למטה הן מהיציאות שלנו.",
-        "היעד שלנו: 5,000 דולר. כל תרומה, גם קטנה, היא עוד קופסת סופגניות או עוד נר.",
+        "היעד שלנו: 7,700 דולר. כל תרומה, גם קטנה, היא עוד קופסת סופגניות או עוד נר.",
       ],
       sign: ["תודה רבה וחג חנוכה שמח,", "שניאור"],
     },
