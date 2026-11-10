@@ -73,7 +73,7 @@ export function StripeDonate({ t, lang }: { t: StripeTexts; lang: Locale }) {
 
   // Options figées au premier rendu ; le montant suit via elements.update()
   const options = useMemo(
-    () => ({ mode: "payment" as const, amount: 3600, currency: "eur", paymentMethodTypes: ["card"], locale: lang, appearance }),
+    () => ({ mode: "payment" as const, amount: 3600, currency: "eur", allowedPaymentMethodTypes: ["card"], locale: lang, appearance }),
     [lang],
   );
 
