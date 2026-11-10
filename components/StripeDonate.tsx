@@ -73,7 +73,7 @@ export function StripeDonate({ t, lang }: { t: StripeTexts; lang: Locale }) {
 
   // Options figées au premier rendu ; le montant suit via elements.update()
   const options = useMemo(
-    () => ({ mode: "payment" as const, amount: 3600, currency: "eur", locale: lang, appearance }),
+    () => ({ mode: "payment" as const, amount: 3600, currency: "eur", paymentMethodTypes: ["card"], locale: lang, appearance }),
     [lang],
   );
 
@@ -303,7 +303,7 @@ function CardForm({
           className="h-12 w-full rounded-[6px] border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:border-night"
         />
       </label>
-      <PaymentElement options={{ wallets: { applePay: "never", googlePay: "never" }, layout: "tabs" }} />
+      <PaymentElement options={{ wallets: { applePay: "never", googlePay: "never", link: "never" }, layout: "tabs" }} />
       {error && (
         <p role="alert" className="mt-3 text-[14px] text-[#b42318]">
           {error}

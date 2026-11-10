@@ -33,7 +33,7 @@ export async function POST(req: Request) {
       currency: "eur",
       description: "Don Hanoukka – soldats au front",
       receipt_email: email,
-      automatic_payment_methods: { enabled: true },
+      allowed_payment_method_types: ["card"], // carte uniquement (Apple Pay / Google Pay passent par la carte)
       metadata: { lang },
     });
     return Response.json({ clientSecret: intent.client_secret });
