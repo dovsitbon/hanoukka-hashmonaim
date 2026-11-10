@@ -3,6 +3,7 @@ export type Locale = (typeof locales)[number];
 export const isLocale = (v: string): v is Locale => (locales as readonly string[]).includes(v);
 
 export const SITE_URL = "https://hanoukka-hashmonaim.vercel.app";
+export const REVOLUT_URL = "https://revolut.me/shneorb3ev";
 export const PAYPAL_URL = "https://www.paypal.me/ShneorSitbon37";
 
 // Ordre de la galerie : ordre de la maquette, puis les 10 photos envoyées ensuite (p16 à p25).
@@ -35,6 +36,7 @@ type Dict = {
   photoAlt: (n: number) => string;
   videoLabel: (n: number) => string;
   donateTitle: string;
+  applePay: { title: string; card: string; note: string; help: string };
   paypalTitle: string;
   paypalNote: string;
   paypalBtn: string;
@@ -56,15 +58,15 @@ type Dict = {
 
 export const dict: Record<Locale, Dict> = {
   fr: {
-    htmlTitle: "Hanoukka avec la brigade Hashmonaïm – Collecte de Shneor Sitbon",
+    htmlTitle: "Hanoukka avec les soldats au front",
     description:
       "Beignets, repas chauds et bougies de Hanoukka pour les soldats au front et la brigade Hashmonaïm. Collecte de Shneor Sitbon, objectif 7 700 $.",
-    ogTitle: "Hanoukka avec les soldats de la brigade Hashmonaïm",
+    ogTitle: "Hanoukka avec les soldats au front",
     ogDescription: "Ramener la lumière jusqu'au dernier check-point. Collecte de Shneor Sitbon.",
     brand: "Hanoukka · Soldats de Tsahal",
     donate: "Faire un don",
     coverAlt: "Coffre de voiture rempli de soufganiot, de boissons et de coffrets de bougies, prêt pour une sortie",
-    title: "Hanoukka avec les soldats de la brigade Hashmonaïm",
+    title: "Hanoukka avec les soldats au front",
     by: "Collecte organisée par Shneor Sitbon",
     goal: "Objectif : 7 700 $",
     letter: {
@@ -101,6 +103,7 @@ export const dict: Record<Locale, Dict> = {
     photoAlt: (n) => `Sortie de Hanoukka avec les soldats, photo ${n}`,
     videoLabel: (n) => `Vidéo ${n} d'une sortie de Hanoukka`,
     donateTitle: "Faire un don",
+    applePay: {"title":"Apple Pay ou carte bancaire","card":"Payer par carte bancaire","note":"Rapide et sécurisé, en quelques secondes. Pas besoin de compte.","help":"Sur la page qui s'ouvre, indiquez le montant puis choisissez Apple Pay ou carte."},
     paypalTitle: "Par carte bancaire ou PayPal",
     paypalNote: "Pas besoin de compte PayPal, vous pouvez payer directement par carte.",
     paypalBtn: "Donner avec PayPal",
@@ -121,15 +124,15 @@ export const dict: Record<Locale, Dict> = {
     langLabel: "Langue",
   },
   en: {
-    htmlTitle: "Hanukkah with the Hashmonaim Brigade – Shneor Sitbon's fundraiser",
+    htmlTitle: "Hanukkah with the soldiers on the front line",
     description:
       "Sufganiyot, hot meals and Hanukkah candles for soldiers on the front lines and the Hashmonaim Brigade. A fundraiser by Shneor Sitbon, goal $7,700.",
-    ogTitle: "Hanukkah with the soldiers of the Hashmonaim Brigade",
+    ogTitle: "Hanukkah with the soldiers on the front line",
     ogDescription: "Bringing the light all the way to the last checkpoint. A fundraiser by Shneor Sitbon.",
     brand: "Hanukkah · IDF Soldiers",
     donate: "Donate",
     coverAlt: "A car trunk packed with sufganiyot, drinks and candle kits, ready for a visit",
-    title: "Hanukkah with the soldiers of the Hashmonaim Brigade",
+    title: "Hanukkah with the soldiers on the front line",
     by: "A fundraiser organized by Shneor Sitbon",
     goal: "Goal: $7,700",
     letter: {
@@ -166,6 +169,7 @@ export const dict: Record<Locale, Dict> = {
     photoAlt: (n) => `Hanukkah visit with the soldiers, photo ${n}`,
     videoLabel: (n) => `Video ${n} from a Hanukkah visit`,
     donateTitle: "Donate",
+    applePay: {"title":"Apple Pay or card","card":"Pay by card","note":"Quick and secure, in a few seconds. No account needed.","help":"On the page that opens, enter the amount, then choose Apple Pay or card."},
     paypalTitle: "By card or PayPal",
     paypalNote: "No PayPal account needed, you can pay by card.",
     paypalBtn: "Donate with PayPal",
@@ -186,15 +190,15 @@ export const dict: Record<Locale, Dict> = {
     langLabel: "Language",
   },
   he: {
-    htmlTitle: "חנוכה עם חטיבת החשמונאים – מגבית של שניאור סיטבון",
+    htmlTitle: "חנוכה עם הלוחמים בחזית",
     description:
       "סופגניות, ארוחות חמות ונרות חנוכה ללוחמים בחזית ולחטיבת החשמונאים. מגבית של שניאור סיטבון, יעד 7,700 דולר.",
-    ogTitle: "חנוכה עם הלוחמים של חטיבת החשמונאים",
+    ogTitle: "חנוכה עם הלוחמים בחזית",
     ogDescription: "להביא את האור עד המחסום האחרון. מגבית של שניאור סיטבון.",
     brand: "חנוכה · חיילי צה״ל",
     donate: "לתרומה",
     coverAlt: "תא מטען מלא בסופגניות, שתייה וערכות נרות, מוכן ליציאה",
-    title: "חנוכה עם הלוחמים של חטיבת החשמונאים",
+    title: "חנוכה עם הלוחמים בחזית",
     by: "מגבית בארגון שניאור סיטבון",
     goal: "היעד: 7,700 דולר",
     letter: {
@@ -231,6 +235,7 @@ export const dict: Record<Locale, Dict> = {
     photoAlt: (n) => `יציאת חנוכה עם החיילים, תמונה ${n}`,
     videoLabel: (n) => `סרטון ${n} מיציאת חנוכה`,
     donateTitle: "לתרומה",
+    applePay: {"title":"Apple Pay או כרטיס אשראי","card":"תשלום בכרטיס אשראי","note":"מהיר ומאובטח, תוך שניות. לא צריך חשבון.","help":"בעמוד שנפתח, רשמו את הסכום ובחרו Apple Pay או כרטיס אשראי."},
     paypalTitle: "בכרטיס אשראי או PayPal",
     paypalNote: "אין צורך בחשבון PayPal, אפשר לשלם בכרטיס אשראי.",
     paypalBtn: "לתרום ב-PayPal",

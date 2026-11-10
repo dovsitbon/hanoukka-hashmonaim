@@ -2,6 +2,7 @@ import { BANK, PAYPAL_URL, PHOTOS, dict, isLocale, locales, type Locale } from "
 import { Gallery } from "@/components/Gallery";
 import { CopyButton } from "@/components/CopyButton";
 import { Hanukkiah } from "@/components/Hanukkiah";
+import { ApplePayBlock } from "@/components/ApplePayBlock";
 
 // Diaporama du haut : la hanoukia en premier, puis les allumages (point focal de chaque photo)
 const SLIDES = [
@@ -180,6 +181,8 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
         <section id="don" className="mt-14 scroll-mt-4 border-t border-sand-line bg-sand pb-12 pt-5">
           <div className="mx-auto max-w-[760px] px-5">
             <h2 className="mb-4 mt-8 font-serif text-[1.6rem] font-bold leading-[1.2] text-night">{t.donateTitle}</h2>
+
+            <ApplePayBlock t={t.applePay} />
 
             <div className="mb-4 flex flex-col items-stretch gap-6 rounded-[6px] border border-neutral-300 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
               <div>

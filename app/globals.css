@@ -32,6 +32,10 @@ body { color: #222; background: #fff; }
   25% { opacity: 0; transform: scale(1.07); }
   100% { opacity: 0; transform: scale(1.07); }
 }
+/* Android : pas d'Apple Pay, la carte bancaire devient le bouton principal */
+[data-os="android"] .ap-apple { display: none; }
+[data-os="android"] .ap-card { background: #000; color: #fff; border-color: #000; }
+
 @media (prefers-reduced-motion: reduce) {
   .slide { animation: none; }
   .slide:first-child { opacity: 1; }
