@@ -32,7 +32,7 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
       title: t.ogTitle,
       description: t.ogDescription,
       locale: { fr: "fr_FR", en: "en_US", he: "he_IL" }[lang],
-      images: [{ url: `/api/og?lang=${lang}`, width: 660, height: 347, alt: t.ogTitle }],
+      images: [{ url: `/api/og?lang=${lang}`, width: 600, height: 315, alt: t.ogTitle }],
     },
     twitter: { card: "summary_large_image", title: t.ogTitle, description: t.ogDescription, images: [`/api/og?lang=${lang}`] },
     // Traduction automatique des navigateurs bloquée : seules les langues du site sont proposées

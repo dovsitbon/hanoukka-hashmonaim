@@ -24,7 +24,7 @@ function visual(text: string, rtl: boolean) {
 }
 
 // Image allégée pour WhatsApp (moins de 600 Ko) : 1200x630 réduit
-const SCALE = 0.55;
+const SCALE = 0.5;
 
 // Image de partage (WhatsApp, Facebook) : la hanoukia + la jauge à jour
 export async function GET(req: Request) {
