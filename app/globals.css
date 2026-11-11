@@ -21,7 +21,7 @@ body { color: #222; background: #fff; }
 @media (min-width: 640px) { .hero { min-height: min(82vh, 780px); } }
 .hero-title { font-size: clamp(2.2rem, 6vw, 3.6rem); }
 .hero-scrim {
-  background: linear-gradient(to bottom, rgba(8, 12, 24, 0.82) 0%, rgba(8, 12, 24, 0.5) 40%, rgba(8, 12, 24, 0) 65%, rgba(8, 12, 24, 0.35) 100%);
+  background: linear-gradient(to bottom, rgba(8, 12, 24, 0.82) 0%, rgba(8, 12, 24, 0.62) 45%, rgba(8, 12, 24, 0.3) 75%, rgba(8, 12, 24, 0.45) 100%);
 }
 /* 5 photos, 6 s chacune, fondu enchaîné lent ; la première est déjà visible au chargement (délai négatif) */
 .slide { opacity: 0; animation: slide 30s linear infinite; }
@@ -37,3 +37,11 @@ body { color: #222; background: #fff; }
   .slide { animation: none; }
   .slide:first-child { opacity: 1; }
 }
+
+/* Confettis de palier / objectif atteint (une seule fois par visiteur) */
+.confetti { animation: confetti-fall 2.6s cubic-bezier(0.25, 0.6, 0.4, 1) forwards; }
+@keyframes confetti-fall {
+  0% { translate: 0 0; opacity: 1; }
+  100% { translate: 30px 105vh; rotate: 540deg; opacity: 0.9; }
+}
+@media (prefers-reduced-motion: reduce) { .confetti { display: none; } }

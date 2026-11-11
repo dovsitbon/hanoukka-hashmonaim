@@ -1,4 +1,5 @@
 import Stripe from "stripe";
+import { CAMPAIGN } from "@/lib/campaign-config";
 
 export const runtime = "nodejs";
 
@@ -11,7 +12,7 @@ export async function POST(req: Request) {
   const key = process.env.STRIPE_SECRET_KEY;
   if (!key) return Response.json({ error: "config" }, { status: 500 });
 
-  let body: { amount?: unknown; email?: unknown; lang?: unknown };
+  let body: { amount?: unknown; email?: unknown; lang?: unknown; name?: unknown; message?: unknown; anonymous?: unknown };
   try {
     body = await req.json();
   } catch {
@@ -25,6 +26,10 @@ export async function POST(req: Request) {
   const email = typeof body.email === "string" ? body.email.trim() : "";
   if (!EMAIL.test(email)) return Response.json({ error: "email" }, { status: 400 });
   const lang = typeof body.lang === "string" ? body.lang.slice(0, 2) : "";
+  const clean = (v: unknown, max: number) => (typeof v === "string" ? v.replace(/\s+/g, " ").trim().slice(0, max) : "");
+  const anonymous = body.anonymous === true;
+  const displayName = anonymous ? "" : clean(body.name, 40);
+  const message = clean(body.message, 140);
 
   try {
     const stripe = new Stripe(key);
@@ -34,7 +39,7 @@ export async function POST(req: Request) {
       description: "Don Hanoukka – soldats au front",
       receipt_email: email,
       allowed_payment_method_types: ["card"], // carte uniquement (Apple Pay / Google Pay passent par la carte)
-      metadata: { lang },
+      metadata: { lang, campaign: CAMPAIGN.id, display_name: displayName, message, anonymous: anonymous ? "1" : "0" },
     });
     return Response.json({ clientSecret: intent.client_secret });
   } catch (e) {

@@ -32,9 +32,9 @@ export async function generateMetadata({ params }: LayoutProps<"/[lang]">): Prom
       title: t.ogTitle,
       description: t.ogDescription,
       locale: { fr: "fr_FR", en: "en_US", he: "he_IL" }[lang],
-      images: [{ url: "/og-hanukkiah.jpg", width: 1200, height: 900, alt: t.ogTitle }],
+      images: [{ url: `/api/og?lang=${lang}`, width: 1200, height: 630, alt: t.ogTitle }],
     },
-    twitter: { card: "summary_large_image", title: t.ogTitle, description: t.ogDescription, images: ["/og-hanukkiah.jpg"] },
+    twitter: { card: "summary_large_image", title: t.ogTitle, description: t.ogDescription, images: [`/api/og?lang=${lang}`] },
     // Traduction automatique des navigateurs bloquée : seules les langues du site sont proposées
     other: { google: "notranslate" },
   };

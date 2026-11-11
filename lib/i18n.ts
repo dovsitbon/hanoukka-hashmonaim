@@ -6,6 +6,13 @@ export const SITE_URL = "https://hanoukka-hashmonaim.vercel.app";
 export type StripeTexts = {
   title: string; choose: string; other: string; min: string; or: string; email: string; pay: string;
   processing: string; minError: string; emailError: string; error: string; secure: string; thanks: string;
+  nameLabel: string; messageLabel: string; anonymousLabel: string;
+};
+
+export type CampaignTexts = {
+  raised: string; of: string; left: string; donors: [string, string]; days: [string, string]; reached: string; bonus: string;
+  aria: string; fastest: string; otherWays: string; recentTitle: string; anonymous: string; seeAll: string; seeLess: string;
+  thanks: string; thanksOne: string; first: string; share: string; copy: string; copied: string; shareText: string;
 };
 
 export const BIT_URL = "https://www.bitpay.co.il/app/me/32219B0E-AD5E-6854-E161-3DFC2133863E76A6";
@@ -42,6 +49,7 @@ type Dict = {
   videoLabel: (n: number) => string;
   donateTitle: string;
   stripe: StripeTexts;
+  campaign: CampaignTexts;
   bit: { btn: string; note: string; to: string; qrAlt: string };
   paypalTitle: string;
   paypalNote: string;
@@ -66,7 +74,7 @@ export const dict: Record<Locale, Dict> = {
   fr: {
     htmlTitle: "Hanoukka avec les soldats au front",
     description:
-      "Beignets, repas chauds et bougies de Hanoukka pour les soldats au front et la brigade Hashmonaïm. Collecte de Shneor Sitbon, objectif 7 700 $.",
+      "Beignets, repas chauds et bougies de Hanoukka pour les soldats au front et la brigade Hashmonaïm. Collecte de Shneor Sitbon, objectif 7 700 €.",
     ogTitle: "Hanoukka avec les soldats au front",
     ogDescription: "Ramener la lumière jusqu'au dernier check-point. Collecte de Shneor Sitbon.",
     brand: "Hanoukka · Soldats de Tsahal",
@@ -74,7 +82,7 @@ export const dict: Record<Locale, Dict> = {
     coverAlt: "Coffre de voiture rempli de soufganiot, de boissons et de coffrets de bougies, prêt pour une sortie",
     title: "Hanoukka avec les soldats au front",
     by: "Collecte organisée par Shneor Sitbon",
-    goal: "Objectif : 7 700 $",
+    goal: "Objectif : 7 700 €",
     letter: {
       p: [
         "Shalom à tous,",
@@ -89,7 +97,7 @@ export const dict: Record<Locale, Dict> = {
       ],
       after: [
         "Cette année, le but est simple : passer Hanoukka avec les soldats au front, et en particulier ceux de la brigade Hashmonaïm. Ramener la lumière jusqu'au dernier check-point. Tout ce qu'on récolte sert à acheter ce qu'on leur apporte. Les photos ci-dessous viennent de nos sorties.",
-        "On vise 7 700 $. Chaque don, même petit, c'est une boîte de beignets ou une bougie de plus.",
+        "On vise 7 700 €. Chaque don, même petit, c'est une boîte de beignets ou une bougie de plus.",
       ],
       sign: ["Merci beaucoup et joyeuses fêtes de Hanoukka,", "Shneor"],
     },
@@ -109,7 +117,8 @@ export const dict: Record<Locale, Dict> = {
     photoAlt: (n) => `Sortie de Hanoukka avec les soldats, photo ${n}`,
     videoLabel: (n) => `Vidéo ${n} d'une sortie de Hanoukka`,
     donateTitle: "Faire un don",
-    stripe: {"title":"Apple Pay, Google Pay ou carte bancaire","choose":"Choisissez votre don","other":"Autre montant","min":"Minimum 5 €","or":"ou par carte bancaire","email":"Votre email (pour le reçu)","pay":"Donner {amount}","processing":"Paiement en cours…","minError":"Le montant minimum est de 5 €.","emailError":"Indiquez un email valide pour recevoir le reçu.","error":"Le paiement n'a pas abouti. Réessayez, ou passez par PayPal ou le virement ci-dessous.","secure":"Paiement sécurisé par Stripe. Pas besoin de compte.","thanks":"Merci pour votre don ! Un reçu vous a été envoyé par email."},
+    stripe: {"title":"Apple Pay, Google Pay ou carte bancaire","choose":"Choisissez votre don","other":"Autre montant","min":"Minimum 5 €","or":"ou par carte bancaire","email":"Votre email (pour le reçu)","pay":"Donner {amount}","processing":"Paiement en cours…","minError":"Le montant minimum est de 5 €.","emailError":"Indiquez un email valide pour recevoir le reçu.","error":"Le paiement n'a pas abouti. Réessayez, ou passez par PayPal ou le virement ci-dessous.","secure":"Paiement sécurisé par Stripe. Pas besoin de compte.","thanks":"Merci pour votre don ! Un reçu vous a été envoyé par email.","nameLabel":"Nom à afficher (facultatif)","messageLabel":"Un mot pour les soldats (facultatif)","anonymousLabel":"Donner de façon anonyme"},
+    campaign: {"raised":"collectés","of":"sur {goal}","left":"encore à collecter","donors":["donateur","donateurs"],"days":["jour avant Hanoukka","jours avant Hanoukka"],"reached":"Objectif atteint !","bonus":"Nouvel objectif : {amount}","aria":"{pct} % de l'objectif atteint","fastest":"Le plus rapide","otherWays":"Autres moyens de donner","recentTitle":"Derniers dons","anonymous":"Donateur anonyme","seeAll":"Voir tous les donateurs","seeLess":"Réduire la liste","thanks":"Merci à {n} donateurs !","thanksOne":"Merci à notre premier donateur !","first":"Soyez le premier à donner.","share":"Partager la collecte","copy":"Copier le lien","copied":"Lien copié","shareText":"Hanoukka avec les soldats au front : déjà {raised} collectés sur {goal}. Participez :"},
     bit: {"btn":"Payer avec Bit","note":"Pour les donateurs en Israël, avec l'application Bit.","to":"Bénéficiaire :","qrAlt":"QR code Bit pour Shneor Zalman Sitbon"},
     paypalTitle: "Par carte bancaire ou PayPal",
     paypalNote: "Pas besoin de compte PayPal, vous pouvez payer directement par carte.",
@@ -133,7 +142,7 @@ export const dict: Record<Locale, Dict> = {
   en: {
     htmlTitle: "Hanukkah with the soldiers on the front line",
     description:
-      "Sufganiyot, hot meals and Hanukkah candles for soldiers on the front lines and the Hashmonaim Brigade. A fundraiser by Shneor Sitbon, goal $7,700.",
+      "Sufganiyot, hot meals and Hanukkah candles for soldiers on the front lines and the Hashmonaim Brigade. A fundraiser by Shneor Sitbon, goal €7,700.",
     ogTitle: "Hanukkah with the soldiers on the front line",
     ogDescription: "Bringing the light all the way to the last checkpoint. A fundraiser by Shneor Sitbon.",
     brand: "Hanukkah · IDF Soldiers",
@@ -141,7 +150,7 @@ export const dict: Record<Locale, Dict> = {
     coverAlt: "A car trunk packed with sufganiyot, drinks and candle kits, ready for a visit",
     title: "Hanukkah with the soldiers on the front line",
     by: "A fundraiser organized by Shneor Sitbon",
-    goal: "Goal: $7,700",
+    goal: "Goal: €7,700",
     letter: {
       p: [
         "Shalom everyone,",
@@ -156,7 +165,7 @@ export const dict: Record<Locale, Dict> = {
       ],
       after: [
         "This year the goal is simple: spend Hanukkah with the soldiers on the front lines, especially the Hashmonaim Brigade. Bring the light all the way to the last checkpoint. Everything we raise goes toward what we bring them. The photos below are from our past visits.",
-        "We're aiming for $7,700. Every donation, even a small one, means one more box of doughnuts or one more candle.",
+        "We're aiming for €7,700. Every donation, even a small one, means one more box of doughnuts or one more candle.",
       ],
       sign: ["Thank you so much and happy Hanukkah,", "Shneor"],
     },
@@ -176,7 +185,8 @@ export const dict: Record<Locale, Dict> = {
     photoAlt: (n) => `Hanukkah visit with the soldiers, photo ${n}`,
     videoLabel: (n) => `Video ${n} from a Hanukkah visit`,
     donateTitle: "Donate",
-    stripe: {"title":"Apple Pay, Google Pay or card","choose":"Choose your donation","other":"Other amount","min":"Minimum €5","or":"or by card","email":"Your email (for the receipt)","pay":"Donate {amount}","processing":"Processing…","minError":"The minimum amount is €5.","emailError":"Enter a valid email to receive your receipt.","error":"The payment didn't go through. Try again, or use PayPal or the bank transfer below.","secure":"Secure payment by Stripe. No account needed.","thanks":"Thank you for your donation! A receipt has been sent to your email."},
+    stripe: {"title":"Apple Pay, Google Pay or card","choose":"Choose your donation","other":"Other amount","min":"Minimum €5","or":"or by card","email":"Your email (for the receipt)","pay":"Donate {amount}","processing":"Processing…","minError":"The minimum amount is €5.","emailError":"Enter a valid email to receive your receipt.","error":"The payment didn't go through. Try again, or use PayPal or the bank transfer below.","secure":"Secure payment by Stripe. No account needed.","thanks":"Thank you for your donation! A receipt has been sent to your email.","nameLabel":"Display name (optional)","messageLabel":"A message for the soldiers (optional)","anonymousLabel":"Donate anonymously"},
+    campaign: {"raised":"raised","of":"of {goal}","left":"still needed","donors":["donor","donors"],"days":["day to Hanukkah","days to Hanukkah"],"reached":"Goal reached!","bonus":"Stretch goal: {amount}","aria":"{pct}% of the goal reached","fastest":"The fastest way","otherWays":"Other ways to give","recentTitle":"Latest donations","anonymous":"Anonymous donor","seeAll":"See all donors","seeLess":"Show fewer","thanks":"Thank you to {n} donors!","thanksOne":"Thank you to our first donor!","first":"Be the first to give.","share":"Share the campaign","copy":"Copy link","copied":"Link copied","shareText":"Hanukkah with the soldiers on the front line: {raised} raised so far of {goal}. Join in:"},
     bit: {"btn":"Pay with Bit","note":"For donors in Israel, with the Bit app.","to":"Recipient:","qrAlt":"Bit QR code for Shneor Zalman Sitbon"},
     paypalTitle: "By card or PayPal",
     paypalNote: "No PayPal account needed, you can pay by card.",
@@ -200,7 +210,7 @@ export const dict: Record<Locale, Dict> = {
   he: {
     htmlTitle: "חנוכה עם הלוחמים בחזית",
     description:
-      "סופגניות, ארוחות חמות ונרות חנוכה ללוחמים בחזית ולחטיבת החשמונאים. מגבית של שניאור סיטבון, יעד 7,700 דולר.",
+      "סופגניות, ארוחות חמות ונרות חנוכה ללוחמים בחזית ולחטיבת החשמונאים. מגבית של שניאור סיטבון, יעד 7,700 €.",
     ogTitle: "חנוכה עם הלוחמים בחזית",
     ogDescription: "להביא את האור עד המחסום האחרון. מגבית של שניאור סיטבון.",
     brand: "חנוכה · חיילי צה״ל",
@@ -208,7 +218,7 @@ export const dict: Record<Locale, Dict> = {
     coverAlt: "תא מטען מלא בסופגניות, שתייה וערכות נרות, מוכן ליציאה",
     title: "חנוכה עם הלוחמים בחזית",
     by: "מגבית בארגון שניאור סיטבון",
-    goal: "היעד: 7,700 דולר",
+    goal: "היעד: 7,700 €",
     letter: {
       p: [
         "שלום לכולם,",
@@ -223,7 +233,7 @@ export const dict: Record<Locale, Dict> = {
       ],
       after: [
         "השנה המטרה פשוטה: לעשות חנוכה עם הלוחמים בחזית, ובמיוחד עם לוחמי חטיבת החשמונאים. להביא את האור עד המחסום האחרון. כל מה שנאסף הולך לקנות את מה שאנחנו מביאים להם. התמונות למטה הן מהיציאות שלנו.",
-        "היעד שלנו: 7,700 דולר. כל תרומה, גם קטנה, היא עוד קופסת סופגניות או עוד נר.",
+        "היעד שלנו: 7,700 €. כל תרומה, גם קטנה, היא עוד קופסת סופגניות או עוד נר.",
       ],
       sign: ["תודה רבה וחג חנוכה שמח,", "שניאור"],
     },
@@ -243,7 +253,8 @@ export const dict: Record<Locale, Dict> = {
     photoAlt: (n) => `יציאת חנוכה עם החיילים, תמונה ${n}`,
     videoLabel: (n) => `סרטון ${n} מיציאת חנוכה`,
     donateTitle: "לתרומה",
-    stripe: {"title":"Apple Pay, Google Pay או כרטיס אשראי","choose":"בחרו את סכום התרומה","other":"סכום אחר","min":"מינימום 5 €","or":"או בכרטיס אשראי","email":"האימייל שלכם (לקבלה)","pay":"לתרום {amount}","processing":"התשלום מתבצע…","minError":"הסכום המינימלי הוא 5 €.","emailError":"רשמו אימייל תקין כדי לקבל קבלה.","error":"התשלום לא עבר. נסו שוב, או השתמשו ב-PayPal או בהעברה בנקאית למטה.","secure":"תשלום מאובטח דרך Stripe. לא צריך חשבון.","thanks":"תודה על התרומה! קבלה נשלחה אליך במייל."},
+    stripe: {"title":"Apple Pay, Google Pay או כרטיס אשראי","choose":"בחרו את סכום התרומה","other":"סכום אחר","min":"מינימום 5 €","or":"או בכרטיס אשראי","email":"האימייל שלכם (לקבלה)","pay":"לתרום {amount}","processing":"התשלום מתבצע…","minError":"הסכום המינימלי הוא 5 €.","emailError":"רשמו אימייל תקין כדי לקבל קבלה.","error":"התשלום לא עבר. נסו שוב, או השתמשו ב-PayPal או בהעברה בנקאית למטה.","secure":"תשלום מאובטח דרך Stripe. לא צריך חשבון.","thanks":"תודה על התרומה! קבלה נשלחה אליך במייל.","nameLabel":"שם להצגה (לא חובה)","messageLabel":"הודעה ללוחמים (לא חובה)","anonymousLabel":"לתרום באופן אנונימי"},
+    campaign: {"raised":"נאספו","of":"מתוך {goal}","left":"חסרים עוד","donors":["תורם","תורמים"],"days":["יום לחנוכה","ימים לחנוכה"],"reached":"היעד הושג!","bonus":"יעד חדש: {amount}","aria":"{pct}% מהיעד הושג","fastest":"הדרך הכי מהירה","otherWays":"דרכים נוספות לתרום","recentTitle":"תרומות אחרונות","anonymous":"תורם אנונימי","seeAll":"לכל התורמים","seeLess":"הצג פחות","thanks":"תודה ל-{n} תורמים!","thanksOne":"תודה לתורם הראשון שלנו!","first":"היו הראשונים לתרום.","share":"שתפו את הקמפיין","copy":"העתקת קישור","copied":"הקישור הועתק","shareText":"חנוכה עם הלוחמים בחזית: נאספו כבר {raised} מתוך {goal}. הצטרפו:"},
     bit: {"btn":"תשלום בביט","note":"לתורמים בישראל, דרך אפליקציית ביט. מהיר ופשוט.","to":"המוטב:","qrAlt":"קוד QR של ביט לשניאור זלמן סיטבון"},
     paypalTitle: "בכרטיס אשראי או PayPal",
     paypalNote: "אין צורך בחשבון PayPal, אפשר לשלם בכרטיס אשראי.",

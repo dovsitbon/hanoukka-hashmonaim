@@ -3,6 +3,15 @@ import { Gallery } from "@/components/Gallery";
 import { CopyButton } from "@/components/CopyButton";
 import { Hanukkiah } from "@/components/Hanukkiah";
 import { StripeDonate } from "@/components/StripeDonate";
+import { getCampaign } from "@/lib/campaign";
+import { CampaignProvider } from "@/components/campaign/CampaignProvider";
+import { CampaignProgress } from "@/components/campaign/CampaignProgress";
+import { RecentDonors } from "@/components/campaign/RecentDonors";
+import { ShareButtons } from "@/components/campaign/ShareButtons";
+import { MobileBar } from "@/components/campaign/MobileBar";
+
+// Page régénérée toutes les 60 s (et tout de suite après un don, via le webhook Stripe)
+export const revalidate = 60;
 
 // Diaporama du haut : la hanoukia en premier, puis les allumages (point focal de chaque photo)
 const SLIDES = [
@@ -19,6 +28,7 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
   const { lang: l } = await params;
   const lang: Locale = isLocale(l) ? l : "he";
   const t = dict[lang];
+  const campaign = await getCampaign();
   const photos = PHOTOS.map((n, i) => ({ src: `/photos/p${n}.jpg`, alt: t.photoAlt(i + 1) }));
 
   const rows = [
@@ -57,7 +67,7 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
   );
 
   return (
-    <>
+    <CampaignProvider initial={campaign} lang={lang}>
       <section className="hero relative isolate overflow-hidden bg-black text-white">
         <div aria-hidden="true" className="absolute inset-0 -z-10">
           {SLIDES.map((s, k) => (
@@ -106,7 +116,9 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
           <div className="max-w-[640px]">
             <h1 className="hero-title font-serif font-bold leading-[1.1] [text-wrap:balance]">{t.title}</h1>
             <p className="mt-4 text-[16px] text-white/85">{t.by}</p>
-            <p className="mt-1 text-[16px] font-semibold text-[#f2c46d]">{t.goal}</p>
+            <div className="mt-6 max-w-[540px]">
+              <CampaignProgress t={t.campaign} variant="full" tone="dark" fallback={t.goal} />
+            </div>
             <div className="mt-7 flex flex-wrap gap-3">
               <a href="#don" className="rounded-[4px] bg-white px-6 py-3 font-bold text-night hover:bg-[#f6f4ef]">
                 {t.donate}
@@ -192,9 +204,27 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
           <div className="mx-auto max-w-[760px] px-5">
             <h2 className="mb-4 mt-8 font-serif text-[1.6rem] font-bold leading-[1.2] text-night">{t.donateTitle}</h2>
 
-            {lang === "he" && bitBlock}
+            <StripeDonate
+              t={t.stripe}
+              lang={lang}
+              badge={t.campaign.fastest}
+              gauge={<CampaignProgress t={t.campaign} variant="compact" tone="light" fallback={t.goal} />}
+            />
 
-            <StripeDonate t={t.stripe} lang={lang} />
+            <div className="mb-4 rounded-[6px] border border-neutral-300 bg-white p-6">
+              <RecentDonors t={t.campaign} />
+              <div className="mt-6 border-t border-neutral-200 pt-5">
+                <ShareButtons t={t.campaign} />
+              </div>
+            </div>
+
+            <details className="group mb-4">
+              <summary className="flex cursor-pointer list-none items-center justify-between rounded-[6px] border border-neutral-300 bg-white px-6 py-4 text-[1.05rem] font-bold text-night hover:bg-neutral-50 [&::-webkit-details-marker]:hidden">
+                {t.campaign.otherWays}
+                <span aria-hidden="true" className="text-[20px] leading-none transition-transform group-open:rotate-45">+</span>
+              </summary>
+              <div className="mt-4">
+            {lang === "he" && bitBlock}
 
             <div className="mb-4 flex flex-col items-stretch gap-6 rounded-[6px] border border-neutral-300 bg-white p-6 sm:flex-row sm:items-center sm:justify-between">
               <div>
@@ -249,6 +279,8 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
               </table>
               <p className="mt-3 text-[14px] text-neutral-500">{t.abroad}</p>
             </div>
+              </div>
+            </details>
 
             <p className="mt-3 text-[14px] text-neutral-500">{t.legal}</p>
           </div>
@@ -259,11 +291,7 @@ export default async function Page({ params }: PageProps<"/[lang]">) {
         {t.footer} · <span lang="he">חג אורים שמח</span>
       </footer>
 
-      <div className="fixed inset-x-0 bottom-0 z-10 border-t border-neutral-300 bg-white px-4 py-2.5 sm:hidden">
-        <a href="#don" className="block rounded-[4px] bg-night p-[13px] text-center font-bold text-white">
-          {t.donate}
-        </a>
-      </div>
-    </>
+      <MobileBar donate={t.donate} raised={t.campaign.raised} />
+    </CampaignProvider>
   );
 }

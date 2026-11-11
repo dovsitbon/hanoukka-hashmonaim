@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useMemo, useState, type FormEvent } from "react";
+import { useEffect, useMemo, useState, type FormEvent, type ReactNode } from "react";
+import { useCampaign } from "@/components/campaign/CampaignProvider";
 import { loadStripe, type Appearance, type StripeExpressCheckoutElementConfirmEvent } from "@stripe/stripe-js";
 import { Elements, ExpressCheckoutElement, PaymentElement, useElements, useStripe } from "@stripe/react-stripe-js";
 import type { Locale, StripeTexts } from "@/lib/i18n";
@@ -41,18 +42,22 @@ function parseCustom(v: string) {
   return Number.isFinite(n) && n > 0 ? Math.round(n * 100) : 0;
 }
 
-async function createIntent(amount: number, email: string, lang: Locale) {
+type Extra = { name: string; message: string; anonymous: boolean };
+
+async function createIntent(amount: number, email: string, lang: Locale, extra: Extra) {
   const r = await fetch("/api/create-payment-intent", {
     method: "POST",
     headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({ amount, email, lang }),
+    body: JSON.stringify({ amount, email, lang, ...extra }),
   });
   const data = (await r.json().catch(() => ({}))) as { clientSecret?: string };
   if (!r.ok || !data.clientSecret) throw new Error("intent");
   return data.clientSecret;
 }
 
-export function StripeDonate({ t, lang }: { t: StripeTexts; lang: Locale }) {
+export function StripeDonate({ t, lang, badge, gauge }: { t: StripeTexts; lang: Locale; badge?: string; gauge?: ReactNode }) {
+  const { refreshSoon } = useCampaign();
+  const [extra, setExtra] = useState<Extra>({ name: "", message: "", anonymous: false });
   const [preset, setPreset] = useState<number | null>(36);
   const [custom, setCustom] = useState("");
   const [done, setDone] = useState(false);
@@ -66,10 +71,18 @@ export function StripeDonate({ t, lang }: { t: StripeTexts; lang: Locale }) {
     const q = new URLSearchParams(window.location.search);
     const status = q.get("redirect_status");
     if (!status) return;
-    if (status === "succeeded" || status === "processing") setDone(true);
+    if (status === "succeeded" || status === "processing") {
+      setDone(true);
+      refreshSoon();
+    }
     window.history.replaceState(null, "", window.location.pathname + "#don");
     document.getElementById("don")?.scrollIntoView();
-  }, []);
+  }, [refreshSoon]);
+
+  const onDone = () => {
+    setDone(true);
+    refreshSoon();
+  };
 
   // Options figées au premier rendu ; le montant suit via elements.update()
   const options = useMemo(
@@ -87,8 +100,10 @@ export function StripeDonate({ t, lang }: { t: StripeTexts; lang: Locale }) {
 
   return (
     <div className="mb-4 rounded-[6px] border border-neutral-300 bg-white p-6">
+      {badge && <p className="mb-2 inline-block rounded-[3px] bg-[#f6efe0] px-2 py-0.5 text-[13px] font-semibold text-[#8a6417]">{badge}</p>}
       <h3 className="mb-1.5 text-[1.15rem] font-bold text-night">{t.title}</h3>
       <p className="text-[16px] text-neutral-600">{t.secure}</p>
+      {gauge && <div className="mt-5 border-t border-neutral-200 pt-5">{gauge}</div>}
 
       <fieldset className="mt-5">
         <legend className="mb-2.5 font-semibold text-neutral-800">{t.choose}</legend>
@@ -139,12 +154,47 @@ export function StripeDonate({ t, lang }: { t: StripeTexts; lang: Locale }) {
         {preset === null && custom !== "" && !valid && <p className="mt-2 text-[14px] text-[#b42318]">{t.minError}</p>}
       </fieldset>
 
+      <div className="mt-5 grid gap-3 sm:grid-cols-2">
+        <label className="block">
+          <span className="mb-1 block text-[15px] text-neutral-600">{t.nameLabel}</span>
+          <input
+            type="text"
+            maxLength={40}
+            autoComplete="nickname"
+            value={extra.anonymous ? "" : extra.name}
+            disabled={extra.anonymous}
+            onChange={(e) => setExtra((x) => ({ ...x, name: e.target.value }))}
+            className="h-12 w-full rounded-[6px] border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:border-night disabled:bg-neutral-100"
+          />
+        </label>
+        <label className="block">
+          <span className="mb-1 block text-[15px] text-neutral-600">{t.messageLabel}</span>
+          <input
+            type="text"
+            maxLength={140}
+            autoComplete="off"
+            value={extra.message}
+            onChange={(e) => setExtra((x) => ({ ...x, message: e.target.value }))}
+            className="h-12 w-full rounded-[6px] border border-neutral-300 bg-white px-3 text-[16px] outline-none focus:border-night"
+          />
+        </label>
+      </div>
+      <label className="mt-3 flex items-center gap-2.5 text-[15px] text-neutral-700">
+        <input
+          type="checkbox"
+          checked={extra.anonymous}
+          onChange={(e) => setExtra((x) => ({ ...x, anonymous: e.target.checked }))}
+          className="h-[18px] w-[18px] accent-[#14213d]"
+        />
+        {t.anonymousLabel}
+      </label>
+
       {!stripePromise ? null : (
         <>
           {valid && (
             <div className={expressShown ? "mt-6" : ""}>
               <Elements stripe={stripePromise} options={options}>
-                <Express amount={amount} lang={lang} t={t} onDone={() => setDone(true)} onShown={setExpressShown} />
+                <Express amount={amount} lang={lang} t={t} extra={extra} onDone={onDone} onShown={setExpressShown} />
               </Elements>
             </div>
           )}
@@ -157,7 +207,7 @@ export function StripeDonate({ t, lang }: { t: StripeTexts; lang: Locale }) {
           )}
           <div className="mt-6">
             <Elements stripe={stripePromise} options={options}>
-              <CardForm amount={amount} valid={valid} lang={lang} t={t} onDone={() => setDone(true)} />
+              <CardForm amount={amount} valid={valid} lang={lang} t={t} extra={extra} onDone={onDone} />
             </Elements>
           </div>
         </>
@@ -177,12 +227,14 @@ function Express({
   amount,
   lang,
   t,
+  extra,
   onDone,
   onShown,
 }: {
   amount: number;
   lang: Locale;
   t: StripeTexts;
+  extra: Extra;
   onDone: () => void;
   onShown: (v: boolean) => void;
 }) {
@@ -200,7 +252,7 @@ function Express({
       return;
     }
     try {
-      const clientSecret = await createIntent(amount, event.billingDetails?.email ?? "", lang);
+      const clientSecret = await createIntent(amount, event.billingDetails?.email ?? "", lang, extra);
       const { error: payError } = await stripe.confirmPayment({
         elements,
         clientSecret,
@@ -241,12 +293,14 @@ function CardForm({
   valid,
   lang,
   t,
+  extra,
   onDone,
 }: {
   amount: number;
   valid: boolean;
   lang: Locale;
   t: StripeTexts;
+  extra: Extra;
   onDone: () => void;
 }) {
   const stripe = useStripe();
@@ -269,7 +323,7 @@ function CardForm({
         setError(submitError.message || t.error);
         return;
       }
-      const clientSecret = await createIntent(amount, email.trim(), lang);
+      const clientSecret = await createIntent(amount, email.trim(), lang, extra);
       const { error: payError } = await stripe.confirmPayment({
         elements,
         clientSecret,

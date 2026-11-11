@@ -1,0 +1,10 @@
+{
+  "campaignId": "hanoukka-2026",
+  "objectif": 7700,
+  "objectifBonus": null,
+  "dateDebut": "2026-11-01",
+  "dateFin": "2026-12-04T16:00:00+02:00",
+  "paliers": [],
+  "afficherMontantsDonateurs": true,
+  "montantHorsStripe": 0
+}
